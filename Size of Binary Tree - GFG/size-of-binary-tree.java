@@ -127,8 +127,9 @@ class Tree
         if(root == null)return;
         
         solve(root.left);
+        count++;
         solve(root.right);
-         count++;
+        
     }
 	public static int getSize(Node root)
 	{
