@@ -130,11 +130,13 @@ class Solution
         // if(root.left == null && root.right == null)return already taken care by below code
         
         if(root.right != null){
-            path.add(root.data);
+            
             rightBoundary(root.right, path);
-        }else if(root.left != null){
             path.add(root.data);
+        }else if(root.left != null){
+            
             rightBoundary(root.left, path);
+            path.add(root.data);
         }
     }
     
@@ -176,7 +178,8 @@ class Solution
 	   for(int i = 0; i < leaf.size(); i++)ans.add(leaf.get(i));
 	   
 	   //4 add right boundary
-	   for(int i = right.size() - 1; i >= 0; i--)ans.add(right.get(i));
+	   //for(int i = right.size() - 1; i >= 0; i--)ans.add(right.get(i));
+	   for(int i = 0; i < right.size(); i++)ans.add(right.get(i));
 	   
 	   return ans;
 	}
