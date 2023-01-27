@@ -131,7 +131,30 @@ class Tree
 {
     
     //Function to check whether a binary tree is balanced or not.
-    int height(Node root){
+    int[] checkBalance(Node root){
+        if(root == null){
+            return new int[]{0, 1};
+        }
+        int lh[] = checkBalance(root.left);
+        int rh[] = checkBalance(root.right);
+        
+        int arr[] = new int[2];
+        arr[0] = Math.max(lh[0], rh[0]) + 1;
+        if(Math.abs(lh[0] - rh[0]) > 1){
+            arr[1] = 0;
+            return arr;
+        }
+        arr[1] = lh[1] & rh[1];
+        return arr;
+    }
+    boolean isBalanced(Node root)
+    {
+	int ans[] = checkBalance(root);
+	if(ans[1] == 1)return true;
+	return false;
+    }
+}
+/*int height(Node root){
         if(root == null)return 0;
          
         int lt = height(root.left);
@@ -148,6 +171,4 @@ class Tree
 	    
 	    if(Math.abs(lh - rh) > 1)return false;
 	    return isBalanced(root.left) && isBalanced(root.right);
-    }
-}
-
+     }*/ //O(n^2) tc
