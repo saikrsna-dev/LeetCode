@@ -68,19 +68,23 @@ class Solution
         pq.add(new int[]{distance[src], src});
         
         while(pq.size() > 0){
-            int temp[] = pq.remove();
-            int dist = temp[0];
-            int node = temp[1];
-            if(distance[node] < dist)continue;
-            for(ArrayList<Integer> edge : adj.get(node)){
-                int nbr = edge.get(0);
-                int wt = edge.get(1);
-                
-                if(distance[nbr] > distance[node] + wt){
-                    distance[nbr] = distance[node] + wt;
-                    pq.add(new int[]{distance[nbr], nbr});
+            int size = pq.size();
+            for(int i = 0; i < size; i++){
+                int temp[] = pq.remove();
+                int dist = temp[0];
+                int node = temp[1];
+                if(distance[node] < dist)continue;
+                for(ArrayList<Integer> edge : adj.get(node)){
+                    int nbr = edge.get(0);
+                    int wt = edge.get(1);
+                    
+                    if(distance[nbr] > distance[node] + wt){
+                        distance[nbr] = distance[node] + wt;
+                        pq.add(new int[]{distance[nbr], nbr});
+                    }
                 }
             }
+            
         }
         return distance;
     }
