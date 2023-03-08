@@ -120,11 +120,11 @@ class Solution {
     int diameter(Node root) {
         if(root == null)return 0;
         int[] ans = diaBT(root);
-        return Math.max(ans[0], ans[1]) + 1;
+        return Math.max(ans[0], ans[1]);
     }
     int[] diaBT(Node root){
         if(root == null){
-            return new int[]{-1, 0};
+            return new int[]{-1, 1};
         }
         int left[] = diaBT(root.left);
         int right[] = diaBT(root.right);
@@ -132,7 +132,7 @@ class Solution {
         int ans[] = new int[2];
         ans[0] = Math.max(left[0], right[0]) + 1;
         
-        int dia = left[0] + right[0] + 2;
+        int dia = left[0] + right[0] + 3;
         ans[1] = Math.max(dia, Math.max(left[1], right[1]));
         return ans;
     }
